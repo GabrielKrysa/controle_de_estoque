@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'id', 'name', 'email', 'password',
+        'id', 'name', 'email', 'password', 'cidade',
     ];
 
     /**
@@ -35,4 +35,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getPedidosAttribute()
+    {
+        $categorias = Categoria::query()->where('user_id', $this->id)->get();
+        $pedidos = [];
+
+        foreach ($categorias as $categoria) {
+            foreach ($categoria->produtos as $produto) {
+                foreach ($produto->pedidos as $pedido) {
+                    $pedido->produto;
+                    $pedidos[] = $pedido;
+                }
+            }
+        }
+
+        return $pedidos;
+    }
 }
