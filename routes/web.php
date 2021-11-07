@@ -31,6 +31,7 @@ Route::post('/atualizarproduto', 'ProdutoController@atualizar')->middleware('aut
 Route::get('/controleestoque', 'EstoqueController@index')->middleware('auth')->name('estoque.index');;
 Route::get('/pedidos', 'EstoqueController@indexPedidos')->middleware('auth')->name('estoque.indexPedido');;
 Route::post('/pedidos/{id}/validar', 'EstoqueController@validarPedido')->middleware('auth')->name('pedido_validado');;
+Route::post('/pedidos/{id}/reprovar', 'EstoqueController@reprovarPedido')->middleware('auth')->name('pedido_reprovado');;
 
 Route::get('/guarapuava', 'VisualizarFeiraController@indexGuarapuava')->name('feira.guarapuava');
 Route::get('/irati', 'VisualizarFeiraController@indexIrati')->name('feira.irati');

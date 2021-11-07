@@ -80,7 +80,7 @@ export default {
             }
 
             if (!this.telefone || !this.nome) {
-                this.$swal('Nome e telefone obrigatórios para adicionar itens ao carrinho')
+                this.$swal('Nome e telefone obrigatórios para realizar pedidos')
                 return;
             }
 

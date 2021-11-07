@@ -48,12 +48,25 @@
                                     <td>{{ date('d/m/Y h:i', strtotime($pedido->created_at)) }}</td>
                                     <td>
                                         @if($pedido->validado)
-                                            <span class="badge badge-success">VALIDADO</span>
+                                            <span class="badge badge-success">ACEITO</span>
                                         @else
                                             <form action="{{route('pedido_validado', ['id' => $pedido->id])}}"
                                                   method="post">
                                                 @csrf
-                                                <button type="submit">VALIDAR</button>
+                                                <button class="btn btn-success" type="submit" style="
+                                                        padding-top: 2px;
+                                                        padding-bottom: 2px;
+                                                    ">ACEITAR
+                                                </button>
+                                            </form>
+                                            <form action="{{route('pedido_reprovado', ['id' => $pedido->id])}}"
+                                                  method="post">
+                                                @csrf
+                                                <button class="btn btn-warning" type="submit" style="
+                                                        padding-top: 2px;
+                                                        padding-bottom: 2px;
+                                                    ">REJEITAR
+                                                </button>
                                             </form>
                                         @endif
 
@@ -68,6 +81,11 @@
         </div>
     </div>
 @endsection
+<style>
+    .btn {
+        width: 100%;
+    }
+</style>
 <script>
     window.setTimeout(function () {
         $(".alert").fadeTo(1500, 0).slideUp(500, function () {

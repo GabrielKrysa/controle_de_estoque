@@ -34,4 +34,14 @@ class EstoqueController extends Controller
 
         return view('relatorio', ["pedidos" => $pedidos]);
     }
+
+    public function reprovarPedido($id)
+    {
+        $pedido = PedidoProduto::query()->findOrFail($id);
+        $pedido->delete();
+
+        $pedidos = Auth::user()->pedidos;
+
+        return view('relatorio', ["pedidos" => $pedidos]);
+    }
 }
